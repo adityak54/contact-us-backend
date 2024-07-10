@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const contactUsRouter = require('./routes/contact-us')
+const issueRouter = require('./routes/issue');
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -19,9 +20,11 @@ mongoose
     console.log(err);
   });
 
-// Routes
-app.use('/contact-us',contactUsRouter)
 
-app.listen("8080", (req, res) => {
+// Routes
+app.use('/contact-us',contactUsRouter)  // contact-us apis
+app.use('/issues',issueRouter)  // issues apis
+
+app.listen("8080", () => {
   console.log("server is listening");
 });

@@ -24,7 +24,7 @@ exports.createIssue = async (req, res) => {
       });
   
       await issue.save();
-      const html = emailTemplate(req.body.name, req.body.topic);
+      const html = emailTemplate(req.body.name, req.body.topic, "pending");
       main(req.body.email, "Issue you are having with To-Let Globe", html);
       return res.status(201).json({ message: "Issue created successfully" });
     } catch (error) {

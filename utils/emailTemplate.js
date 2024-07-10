@@ -1,4 +1,4 @@
-const emailTemplate = (name, topic) => `
+const emailTemplate = (name, topic, status) => `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +6,12 @@ const emailTemplate = (name, topic) => `
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Email Template</title>
   <style>
-    /* Add your CSS styles here */
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
       padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
     }
     .container {
       max-width: 600px;
@@ -39,9 +40,14 @@ const emailTemplate = (name, topic) => `
 <body>
   <div class="container">
     <p>Hello, ${name}</p>
-    <p>Thank you for reaching out to us.</p>
-    <p>We would like to inform you that your issue related to ${topic} is sent to our team.</p>
-    <p>We will reach out to u soon!</p>
+    <p>Thank you for ${
+      status === "pending" ? "reaching out to us" : "your patience"
+    }.</p>
+    <p>We would like to inform you that your issue related to ${topic} ${
+  status === "pending"
+    ? "has been sent to our team. We will reach out to you soon!"
+    : "has been resolved!"
+}.</p>
     <p>Best regards,<br>TEAM TO-LET GLOBE</p>
   </div>
 </body>
